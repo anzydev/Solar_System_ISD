@@ -23,6 +23,8 @@ namespace SolarSystem
         private float distanceVelocity;
         private Vector2 lastPointer;
         private bool dragging;
+        private string selectedPlanetName;
+        private GUIStyle selectedPlanetStyle;
 
         private void Awake()
         {
@@ -69,6 +71,7 @@ namespace SolarSystem
                         PlanetInfo info = hit.collider.GetComponentInParent<PlanetInfo>();
                         if (info != null)
                         {
+                            selectedPlanetName = info.planetName;
                             focus = info.transform;
                             focusPoint = focus.position;
                             SphereCollider sphere = hit.collider as SphereCollider;
@@ -88,6 +91,24 @@ namespace SolarSystem
             Quaternion cameraRotation = Quaternion.Euler(pitch, yaw, 0f);
             transform.position = focusPoint + cameraRotation * new Vector3(0f, 0f, -distance);
             transform.rotation = cameraRotation;
+        }
+
+        private void OnGUI()
+        {
+            if (string.IsNullOrEmpty(selectedPlanetName)) return;
+
+            if (selectedPlanetStyle == null)
+            {
+                selectedPlanetStyle = new GUIStyle(GUI.skin.label)
+                {
+                    alignment = TextAnchor.MiddleCenter,
+                    fontSize = 26,
+                    fontStyle = FontStyle.Bold,
+                    normal = { textColor = Color.white }
+                };
+            }
+
+            GUI.Label(new Rect(Screen.width * .5f - 160f, 24f, 320f, 48f), selectedPlanetName, selectedPlanetStyle);
         }
 
         private void ResetView()

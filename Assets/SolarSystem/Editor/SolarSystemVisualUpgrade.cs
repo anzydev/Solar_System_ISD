@@ -185,10 +185,10 @@ namespace SolarSystem.EditorTools
                     CreateSaturnRings(planet.transform, body.radius, ringMaterial);
 
                 CreateOrbitPath(body.orbit, body.name + "_Orbit_Path");
-                CreateLabel(planet.transform, body.name, body.radius);
+// Labels disabled: CreateLabel(planet.transform, body.name, body.radius);
             }
 
-            CreateLabel(sun.transform, "Sun", 2.7f);
+// Labels disabled: CreateLabel(sun.transform, "Sun", 2.7f);
             CreateCamera();
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath,true) };

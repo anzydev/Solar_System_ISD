@@ -122,7 +122,7 @@ public static class SolarSystemSceneBuilder
         sun.transform.localScale = Vector3.one * 3.4f;
         sun.GetComponent<Renderer>().sharedMaterial = sunMaterial;
         sun.AddComponent<PlanetSpin>().Speed = 2.5f;
-        CreateLabel(sun.transform, "Sun", 3.4f);
+// Labels disabled: CreateLabel(sun.transform, "Sun", 3.4f);
         PlanetInfo sunInfo = sun.AddComponent<PlanetInfo>();
         sunInfo.planetName = "Sun";
         sunInfo.description = "The star at the centre of our Solar System. Its gravity holds the planets in orbit.";
@@ -157,7 +157,7 @@ public static class SolarSystemSceneBuilder
             info.diameterKm = body.diameter;
 
             CreateOrbitPath(body.orbit, body.name + "_OrbitPath");
-            CreateLabel(planet.transform, body.name, body.radius);
+// Labels disabled: CreateLabel(planet.transform, body.name, body.radius);
 
             if (body.name == "Saturn")
                 CreateSaturnRings(planet.transform, body.radius);
